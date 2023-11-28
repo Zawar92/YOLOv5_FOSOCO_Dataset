@@ -18,12 +18,12 @@ Experience the cutting-edge capabilities of YOLOv5, the state-of-the-art object 
    - Python 3.10 serves as the primary language for model implementation, utilizing CUDA 12.1 with an NVIDIA GeForce RTX 2070 for training. PyTorch with CUDA 12.1 compatibility was employed.
     
 ## Model Training, Validation and Testing:
-- `/Training`
+- `Training`
     ```
     python3.10 yolov5/train.py --batch $TRAIN_BATCH --epochs $TRAIN_EPOCHS --data "data.yaml" --weights $BASE_MODEL --project $PROJECT_NAME --name 'feature_extraction' --cache --freeze 12
     ```
     
-- `/Validation`
+- `Validation`
     ```
     WEIGHTS_BEST = "best.pt"  --> weights saved in best.pt
     ```
