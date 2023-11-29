@@ -13,9 +13,20 @@ Experience the cutting-edge capabilities of YOLOv5, the state-of-the-art object 
             - git clone https://github.com/ultralytics/yolov5
             ```
         
-        2. Install dependencies 
+        2. Install dependencies
+            - Install Python version >= 3.10 and pip latest.
+            - Create virtual environment.
+            ```
+            - python -m venv venv
+            ```
+            - Activate virtual environment.
+            ```
+            - source venv/bin/activate
+            ```
+            - Install yolov5 requirenments.
             ```
             - pip install -qr yolov5/requirements.txt
+            - pip freeze
             ```
         
         3. With CPU-configuration continue with current dependencies.
