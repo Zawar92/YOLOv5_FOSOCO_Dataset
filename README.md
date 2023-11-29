@@ -81,7 +81,7 @@ Experience the cutting-edge capabilities of YOLOv5, the state-of-the-art object 
    - Python 3.10 serves as the primary language for model implementation, utilizing CUDA 12.1 with an NVIDIA GeForce RTX 2070 for training. PyTorch with CUDA 12.1 compatibility was employed.
     
 ## Model Training, Validation and Testing:
-Base Model is: **yolov5m6.pt**
+Base Model (pre-trained yolov5 checkpoints) is: **yolov5m6.pt**
 
 Open **yolov5-custom-data.ipynb**
 - `Training`
