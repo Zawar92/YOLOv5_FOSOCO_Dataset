@@ -1,0 +1,12 @@
+1. How much time, energy for the training, testing, validation and inference of single image?
+ANS. All results saved in txt file.
+
+2. Confusion Matrix Evaluation?
+Ans. 
+
+3. Max, Mean, Avg of precession.
+Ans.
+
+4. hyp.VOC.yaml
+Ans. Results are saved in txt file.
+
