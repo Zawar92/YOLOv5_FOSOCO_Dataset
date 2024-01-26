@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # Source folders
-imagesFolder="./data/images"
-labelsFolder="./data/labels"
+imagesFolder="../yolov5/data/valid/images"
+labelsFolder="../yolov5/data/valid/labels"
 
 # Destination folders
-destinationImagesFolder="../yolov5/data/test/images"
-destinationLabelsFolder="../yolov5/data/test/labels"
+destinationImagesFolder="../complete_data/images"
+destinationLabelsFolder="../complete_data/labels"
 
 # Static number of files to be moved
-numFiles=3767
+numFiles=99115
 
 # Move files with matching names
 count=0
