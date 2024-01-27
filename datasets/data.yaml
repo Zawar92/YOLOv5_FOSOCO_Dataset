@@ -1,0 +1,6 @@
+train: /home/zkhan1/YOLOv5_FOSOCO_Dataset/datasets/data/train/images
+val: /home/zkhan1/YOLOv5_FOSOCO_Dataset/datasets/data/valid/images
+test: /home/zkhan1/YOLOv5_FOSOCO_Dataset/datasets/data/test/images
+
+nc: 5
+names: [blue_cone, large_orange_cone, orange_cone, unknown_cone, yellow_cone]
