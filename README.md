@@ -1,4 +1,4 @@
-# Title: YOLOv5: Unveiling State-of-the-Art Object Detection at 140 FPS.
+# Title: YOLOv5 vs Yolov8: Unveiling State-of-the-Art Object Detection at 140 FPS.
 
 ## Introduction:
 Experience the cutting-edge capabilities of YOLOv5, the state-of-the-art object detection model boasting an impressive speed of 140 frames per second. Backed by accurate and reproducible speed benchmarking results, YOLOv5 piqued my interest, prompting an in-depth assessment of its result quality and inference speed. Let's delve into the details!
@@ -107,8 +107,58 @@ Open **yolov5-custom-data.ipynb**
     WEIGHTS_BEST = f"{PROJECT_NAME}/feature_extraction/weights/best.pt"
     python yolov5/detect.py --source 'yolov5/data/test/images' --weights $WEIGHTS_BEST --conf-thres 0.4
     ```
+
+## Training with YOLO-V8 on the FOSOCO Dataset:
+
+- Data preparation:
+    - Open **data_preprocessing.ipynb**. Divide the data in train, test, validation. Yolo-v5 requires config file in **.yaml** format. 
+    - Place the train, test, valid and data.yaml inside models data folder.
+    - Hierarchy follows:
+        ```
+            datasets
+            │───data.yaml
+            │───yolov8m.pt
+            │───yolov5m6.pt
+            └───data/
+            │   │  └─train/
+            │   │  │   └─images/ (.jpg)
+            │   │  │   └─labels/ (.txt)
+            │   │  └─test/
+            │   │  │   └─images/ (.jpg)
+            │   │  │   └─labels/ (.txt)
+            │   │  └─valid/
+            │   │  │   └─images/ (.jpg)
+            │   │  │   └─labels/ (.txt)
+        ```
+
+        ```
+        * Before start training move to datasets/ folder.
+        ```
+
+    - `Training`
+        ```
+        yolo task=detect mode=train model=yolov8m.pt data=data.yaml epochs=100 imgsz=640 batch=16 plots=True name=train_complete device=1 project=yolov8 patience=0 lr0=0.00334 lrf=0.15135 momentum=0.74832 weight_decay=0.00025 warmup_epochs=3.3835 warmup_momentum=0.59462 warmup_bias_lr=0.18657 box=0.02 cls=0.21638 dfl=0.15 pose=12.0 kobj=0.51728 label_smoothing=0.0 nbs=64 hsv_h=0.01041 hsv_s=0.54703 hsv_v=0.27739 degrees=0.0 translate=0.04591 scale=0.75544 shear=0.0 perspective=0.0 flipud=0.0 fliplr=0.5 mosaic=0.85834 mixup=0.04266 copy_paste=0.0 auto_augment=randaugment erasing=0.04 crop_fraction=1.0 optimizer=Adamax close_mosaic=0
+        ```
+
+    - `Validation`
+        ```
+        yolo detect val model=yolov8/train_complete/weights/best.pt plots=True device=1 data=data.yaml save_json=True save_hybrid=True
+        ```
     
+## Best Weights for YoloV5 and YolV8:
+
+- `Yolo-V5`
+    ```
+    train_trainvalid_dist_augment_voc/fine-tuning-background-augment/weights/best.pt
+    ```
+
+- `Yolo-V8`
+    ```
+    datasets/yolov8/train_complete/weights/best.pt
+    ```
+
 ## Conclusion:
-The conclusive analysis reveals YOLOv5's superior run speed, operating approximately 2.5 times faster while excelling in detecting smaller objects. The results exhibit cleaner outputs with minimal overlapping boxes. Kudos to Ultralytics for open-sourcing YOLOv5, a model that seamlessly combines ease of training with efficient inference. This underscores the emerging trend in computer vision object detection, emphasizing models that prioritize both speed and accuracy. If you've experimented with YOLOv5, we welcome you to share your insights in the issues section.
+The conclusive analysis reveals YOLOv5's superior run speed, operating approximately 2.5 times faster while excelling in detecting smaller objects. The results exhibit cleaner outputs with minimal overlapping boxes. Kudos to Ultralytics for open-sourcing YOLOv5, a model that seamlessly combines ease of training with efficient inference. This underscores the emerging trend in computer vision object detection, emphasizing models that prioritize both speed and accuracy. If you've experimented with YOLOv5, we welcome you to share your insights in the issues section. Our study focused on training a model using fsoco data, yielding noteworthy results. Notably, we observed an accuracy loss for background instances during training. To address this, we incorporated 10percent of background images into the training dataset and fine-tuned the model over 100 epochs. This strategic augmentation led to enhanced learning, resulting in improved model performance. Further refinement was achieved by introducing augmented crops, specifically targeting instances with limited representation. This step was pivotal in mitigating the risk of overfitting to certain classes arising from an imbalanced dataset. Post-training, a significant improvement in model eﬀicacy was observed. Subsequently, we conducted tests on objects positioned both closer and farther away from the car, employing the minimum distance between the center of the image and the object. This comprehensive evaluation provided insights into the model’s robustness across varying object distances.Parallel experiments were conducted using YOLOv8, acknowledging its higher resource demands in terms of time and memory during training. However, the results obtained justified the investment, showcasing superior performance in both training and validation phases. Key hyperparameters, referred to as golden hyperparameters, were carefully curated and documented to ensure reproducibility. Additionally, the best-weight file resulting from this experiment has been included for reference. This meticulous approach, encompassing data augmentation, fine-tuning, and
+strategic testing, along with detailed documentation of hyperparameters and model weights, enhances the reliability and reproducibility of our findings, contributing to the advancement of object detection models.
 
 
